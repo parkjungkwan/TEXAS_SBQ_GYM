@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.BoardMapper">
+
+	<insert id="insertBrd" parameterType="com.health.web.brd.Board">
+        insert into BOARD (USERID, IMG, CONTENT) values (
+            'rmsgh', #{img}, #{content} 
+        )
+    </insert>
+    <select id="countArtseq" resultType="string">
+    SELECT COUNT(*) from BOARD
+    </select>
+    <select id="selectAll" resultType="com.health.web.brd.Board" >
+    	SELECT * FROM BOARD ORDER by SEQ DESC
+    </select>
+    <select id="selectBrd" resultType="com.health.web.brd.Board">
+		SELECT * FROM BOARD WHERE SEQ LIKE #{seq}
+	</select>
+	<update id="updateBrd"  parameterType="com.health.web.brd.Board">
+  		UPDATE BOARD SET IMG = #{img}, CONTENT = #{content} WHERE SEQ LIKE #{seq}
+	</update>
+    <delete id="deleteBrd" parameterType="com.health.web.brd.Board">
+    	DELETE FROM BOARD WHERE SEQ LIKE #{seq}
+    </delete>
+</mapper>
